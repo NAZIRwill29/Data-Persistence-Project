@@ -17,19 +17,8 @@ public class GameManager : MonoBehaviour
     private int m_Points;
 
     private bool m_GameOver = false;
-    // public static MainManager Instance;
-
-    // private void Awake()
-    // {
-    //     //keep code and gameObj to next scene
-    //     if (Instance != null)
-    //     {
-    //         Destroy(gameObject);
-    //         return;
-    //     }
-    //     Instance = this;
-    //     DontDestroyOnLoad(gameObject);
-    // }
+    public static int finalScore;
+    public static string userName;
 
 
     // Start is called before the first frame update
@@ -83,6 +72,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        //record final score and username
+        finalScore = m_Points;
+        MainManager.Instance.StoreBestScore();
+        //save in jsonfile
+        MainManager.Instance.SaveBestScoreAndName();
+        //set gameover
         m_GameOver = true;
         GameOverText.SetActive(true);
     }

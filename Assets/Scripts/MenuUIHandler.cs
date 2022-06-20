@@ -9,18 +9,33 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    public InputField nameInput;
+    public Text BestScoreText;
     // Start is called before the first frame update
     void Start()
     {
-
+        SetBestScore();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //show NameInput text
-        //Debug.Log("Input : " + nameInput.text);
+
+    }
+
+    //function back to menu
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    //function change bestscore text
+    void SetBestScore()
+    {
+        //change best score text
+        if (MainManager.Instance != null)
+        {
+            BestScoreText.text = "Best Score : " + MainManager.Instance.bestName + " : " + MainManager.Instance.bestScore;
+        }
     }
 
     //function start game
@@ -32,6 +47,7 @@ public class MenuUIHandler : MonoBehaviour
     //function quit game
     public void Exit()
     {
+        MainManager.Instance.SaveBestScoreAndName();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
