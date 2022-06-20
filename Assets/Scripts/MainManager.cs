@@ -72,6 +72,11 @@ public class MainManager : MonoBehaviour
             {
                 bestName = nameInput.text;
             }
+            //check if name are same or different
+            else if (bestName != nameInput.text)
+            {
+                bestName = nameInput.text;
+            }
         }
     }
 
